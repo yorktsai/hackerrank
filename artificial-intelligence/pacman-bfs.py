@@ -15,33 +15,6 @@ for i in range(0, n):
 
 directions = [[-1, 0], [0, -1], [0, 1], [1, 0]]
 
-def print_grid():
-    for i in range(0, n):
-        print("".join(grid[i]))
-
-def dfs(x, y):
-    global food_found
-
-    for direction in directions:
-        next_x, next_y = x + direction[0], y + direction[1]
-        if next_x < 0 or next_x >= n or next_y < 0 and next_y >= n:
-            continue
-
-        if next_x == food_x and next_y == food_y:
-            # print_grid()
-            food_found = True
-            break
-
-        if grid[next_x][next_y] == "-":
-            grid[next_x][next_y] = '='
-            if not food_found:
-                routes.append([next_x, next_y])
-            
-            dfs(next_x, next_y)
-            if not food_found:
-                routes.pop()
-            # grid[next_x][next_y] = '-'
-
 queue.append([pacman_x, pacman_y, []])
 while len(queue) > 0:
     x, y, r = queue.pop(0)
